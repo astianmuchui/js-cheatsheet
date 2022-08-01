@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ajax</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    </head>
+    <body>
+
+        <button id="button">Get text file</button>
+        
+            <br><br>
+            
+            <div class="text"></div>
+        
+        <script>
+                document.getElementById("button").addEventListener('click',loadText)
+                
+                function loadText(){
+                    var xhr = new XMLHttpRequest()
+                    // OPEN - type , url , async
+                    /*
+                        console.log(xhr)
+                    */
+                        xhr.open('GET','sample.txt',true)
+                        xhr.onload = function(){
+                            if(this.status == 200){
+                                document.querySelector('.text').innerHTML = this.responseText;
+                            }else if(this.status == 404){
+                                document.querySelector('.text').innerHTML = "404 not found";
+                            }
+                        }
+                        
+                        // Readystate method
+                        /*
+                            @values 
+                            0 - request not initialized
+                            1 - server connection established 
+                            2 - Request received 
+                            3 - Processing request 
+                            4 - request finished and response ready
+                        */
+                        
+                        // xhr.onreadystatechange = function(){
+                        //     console.log(this.readyState)
+                        //     if(this.readystate == 4 && this.status == 200){
+                        //         console.log(this.responseText)
+                        //     } 
+                        // }
+                        
+                        // PROGRESS..........
+                        
+                        xhr.onprogress = function(){
+                            console.log(this.readyState)
+                        }
+                        
+                        xhr.onerror = function(){
+                            console.log("Request Error")
+                        }
+                        
+                        xhr.send()
+                }
+                
+        </script>
+    </body>
+</html>

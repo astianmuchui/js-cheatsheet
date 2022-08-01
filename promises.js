@@ -29,9 +29,9 @@ function createPost(post,){
    })
 }
 
-// createPost({title: 'Post three',body: 'The third post'})
-// .then(getPosts)
-// .catch(err => console.log(err))
+createPost({title: 'Post three',body: 'The third post'})
+.then(getPosts)
+.catch(err => console.log(err))
 
 // Async Await 
 async function init(){

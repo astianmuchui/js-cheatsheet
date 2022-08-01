@@ -95,9 +95,10 @@ const todos = [
 ] ;
 
 console.log(todos[0].text);
-
+// Convert to JSON (JAVASCRIPT OBJECT NOTATION)
 const todoJson = JSON.stringify(todos)
 console.log(todoJson)
+// Convert from JSON  to javascript
 console.log(JSON.parse(todoJson))
 
 // Loops 

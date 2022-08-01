@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax2</title>
+</head>
+<body>
+    <button id="btn1">Get user</button> 
+    <br> <br>
+    <button id="btn2">Get users</button>
+    <br>
+    <h1>User</h1>
+    <div class="user"></div>
+    
+    <h1>Users</h1>
+    <div class="users"></div>
+    
+    <script>
+        document.getElementById('btn1').addEventListener('click',loadUser)
+        document.getElementById('btn2').addEventListener('click',loadUsers)
+        
+        function loadUser(){
+            var xhr = new XMLHttpRequest()
+            xhr.open('GET','user.json',true)
+            xhr.onload = function(){
+                let user = this.responseText 
+                if(this.status == 200){
+                        user = JSON.parse(user)
+                        document.querySelector('.user').innerHTML = `<p>${user.name}</p>`;
+                    
+                }
+            }
+            xhr.send()
+        }
+        function loadUsers(){
+            var xhr = new XMLHttpRequest()
+            xhr.open('GET','users.json',true)
+            xhr.onload = function(){
+                if(this.status == 200){
+                    for(let user in users){
+                        user = JSON.parse(user)
+                        document.querySelector('.users').innerHTML += `<li>${user.name} </li>`;
+                    }
+                }
+            }
+            xhr.send()
+        }
+    </script>
+</body>
+</html>
